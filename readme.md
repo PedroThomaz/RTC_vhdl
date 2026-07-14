@@ -267,18 +267,20 @@ O módulo foi conectado ao barramento do processador utilizando os sinais:
 O fluxo de acesso ocorre da seguinte forma:
 
 ```mermaid
-flowchart TD
+graph LR
 
-    A["Programa em C<br/>main.c"] --> B["Driver RTC<br/>rtc.c / rtc.h"]
-    B --> C["hardware.h<br/>Mapeamento de endereços"]
-    C --> D["Barramento de Dados<br/>RISC-V Softcore"]
-    D --> E["iodatabusmux.vhd"]
-    E --> F["rtc.vhd"]
-    F --> G["Registradores do RTC<br/>SEG | MIN | HOUR | DAY | MONTH | YEAR"]
-    G --> H["Leitura dos dados"]
-    H --> D
-    D --> B
-    B --> I["Aplicação C<br/>printf() / processamento"]
+APP["Aplicação C"] --> API["rtc.c"]
+API --> HW["hardware.h"]
+HW --> BUS["RISC-V Data Bus"]
+BUS --> MUX["I/O Data Bus Mux"]
+MUX --> RTC["RTC Peripheral"]
+RTC --> REG["Registradores<br/>SEC MIN HOUR DAY MONTH YEAR"]
+
+REG --> RTC
+RTC --> MUX
+MUX --> BUS
+BUS --> API
+API --> APP
 ```
 
 ---
