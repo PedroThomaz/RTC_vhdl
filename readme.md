@@ -321,6 +321,7 @@ Software
 # Autores
 
 André Outi
+
 Pedro Thomáz
 
 Instituto Federal de Santa Catarina (IFSC)
