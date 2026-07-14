@@ -285,20 +285,20 @@ API --> APP
 
 ---
 
-# Development Board
+# Placa de Desenvolvimento
 
 - Intel MAX 10 (DE10-Lite)
 
 ---
 
-# Processor
+# Processador
 
 - RISC-V Softcore
 - riscv-multicycle
 
 ---
 
-# Language
+# Linguagem
 
 Hardware
 
@@ -310,8 +310,9 @@ Software
 
 ---
 
-# Authors
+# Autores
 
+André Outi
 Pedro Thomáz
 
 Instituto Federal de Santa Catarina (IFSC)
