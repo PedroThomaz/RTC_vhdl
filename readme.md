@@ -34,11 +34,11 @@ O RTC foi integrado como um periférico do barramento do processador.
 ```mermaid
 flowchart TD
 
-    CPU["🖥️ RISC-V Softcore"]
-    BUS["📡 Data Bus"]
-    MUX["🔀 I/O Data Bus Mux"]
-    RTC["🕒 RTC Peripheral"]
-    REG["⏱️ Time Counters<br/>Seconds<br/>Minutes<br/>Hours<br/>Days<br/>Months<br/>Years"]
+    CPU["RISC-V Softcore"]
+    BUS["Data Bus"]
+    MUX["I/O Data Bus Mux"]
+    RTC["RTC Peripheral"]
+    REG["Time Counters<br/>Seconds<br/>Minutes<br/>Hours<br/>Days<br/>Months<br/>Years"]
 
     CPU --> BUS
     BUS --> MUX
