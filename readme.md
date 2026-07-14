@@ -266,7 +266,13 @@ O módulo foi conectado ao barramento do processador utilizando os sinais:
 
 # Operação
 
-O fluxo de acesso ocorre da seguinte forma:
+O RTC foi desenvolvido como um periférico mapeado em memória (memory mapped I/O), permitindo que o processador RISC-V acesse os registradores de tempo utilizando instruções comuns de leitura (lw).
+
+O software executado pelo processador utiliza a biblioteca rtc.c, que realiza leituras dos endereços do periférico definidos em rtc.h. Essas leituras são encaminhadas pelo barramento de dados do processador ao multiplexador de periféricos (iodatabusmux), responsável por selecionar o RTC de acordo com o endereço solicitado.
+
+O periférico mantém contadores internos de segundos, minutos, horas, dias, meses e anos. Esses contadores são atualizados automaticamente por um divisor de clock, que gera um pulso de 1 Hz a partir do clock do sistema. Quando o processador realiza uma leitura, o valor correspondente é disponibilizado no barramento de dados e retornado ao software.
+
+O fluxo de operação pode ser representado pelo diagrama abaixo:
 
 ```mermaid
 graph LR
