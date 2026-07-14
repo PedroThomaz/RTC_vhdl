@@ -1,6 +1,6 @@
 # Real Time Clock (RTC)
 
-## Overview
+## Resumo Geral
 
 O RTC (Real Time Clock) é um periférico desenvolvido para o projeto **riscv-multicycle**, permitindo ao processador RISC-V acessar e controlar um relógio de tempo real através de registradores mapeados em memória (Memory Mapped I/O).
 
@@ -17,8 +17,7 @@ A comunicação entre software e hardware é realizada por meio do barramento de
 
 ---
 
-# Features
-
+# Características
 - Contagem automática do tempo.
 - Conversão interna para BCD.
 - Interface Memory Mapped I/O.
@@ -28,7 +27,7 @@ A comunicação entre software e hardware é realizada por meio do barramento de
 
 ---
 
-# Hardware Architecture
+# Arquitetura do Hardware
 
 O RTC foi integrado como um periférico do barramento do processador.
 
@@ -75,7 +74,7 @@ hardware.h
 
 ---
 
-# Registers
+# Registradores
 
 ## Seconds Register
 
@@ -186,7 +185,7 @@ rtc_read_year();
 
 ---
 
-# Example
+# Exemplo
 
 Inicialização do RTC:
 
@@ -212,7 +211,7 @@ sec  = rtc_read_sec();
 
 ---
 
-# Hardware Integration
+# Integração do Hardware
 
 Os seguintes arquivos do projeto foram modificados para integrar o RTC ao sistema.
 
@@ -263,44 +262,23 @@ O módulo foi conectado ao barramento do processador utilizando os sinais:
 
 ---
 
-# Operation
+# Operação
 
 O fluxo de acesso ocorre da seguinte forma:
 
-```
-Programa em C
+```mermaid
+flowchart TD
 
-↓
-
-rtc_read_sec()
-
-↓
-
-rtc.c
-
-↓
-
-hardware.h
-
-↓
-
-Barramento RISC-V
-
-↓
-
-I/O Data Bus Mux
-
-↓
-
-RTC
-
-↓
-
-Registrador de segundos
-
-↓
-
-Retorno ao processador
+    A["Programa em C<br/>main.c"] --> B["Driver RTC<br/>rtc.c / rtc.h"]
+    B --> C["hardware.h<br/>Mapeamento de endereços"]
+    C --> D["Barramento de Dados<br/>RISC-V Softcore"]
+    D --> E["iodatabusmux.vhd"]
+    E --> F["rtc.vhd"]
+    F --> G["Registradores do RTC<br/>SEG | MIN | HOUR | DAY | MONTH | YEAR"]
+    G --> H["Leitura dos dados"]
+    H --> D
+    D --> B
+    B --> I["Aplicação C<br/>printf() / processamento"]
 ```
 
 ---
