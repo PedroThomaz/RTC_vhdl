@@ -31,17 +31,19 @@ A comunicação entre software e hardware é realizada por meio do barramento de
 
 O RTC foi integrado como um periférico do barramento do processador.
 
-```
-              RISC-V
-                 │
-                 │
-          Data Bus
-                 │
-         I/O Data Bus Mux
-                 │
-               RTC
-                 │
-        Time Counters
+```mermaid
+flowchart TD
+
+    CPU["🖥️ RISC-V Softcore"]
+    BUS["📡 Data Bus"]
+    MUX["🔀 I/O Data Bus Mux"]
+    RTC["🕒 RTC Peripheral"]
+    REG["⏱️ Time Counters<br/>Seconds<br/>Minutes<br/>Hours<br/>Days<br/>Months<br/>Years"]
+
+    CPU --> BUS
+    BUS --> MUX
+    MUX --> RTC
+    RTC --> REG
 ```
 
 O periférico responde aos acessos de leitura e escrita realizados pelo processador através do barramento de dados.
