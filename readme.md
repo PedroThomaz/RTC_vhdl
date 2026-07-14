@@ -320,7 +320,9 @@ Software
 
 # Autores
 
+
 André Outi
+
 
 Pedro Thomáz
 
